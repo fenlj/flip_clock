@@ -17,7 +17,7 @@ class FlipBoard<T> extends StatefulWidget {
   final Stream<T> stream;
   final T initValue;
   final Cubic curves;
-
+  
   const FlipBoard({
     Key? key,
     required this.itemBuilder,
