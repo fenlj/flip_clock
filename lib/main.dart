@@ -13,18 +13,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
       ),
       home: Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: FlipClock(
-              startTime: DateTime.now(),
-            ),
+        appBar: AppBar(title: Text('Flip Clock'),),
+        body: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              FlipClock(
+                startTime: DateTime.now(),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
-
 }
