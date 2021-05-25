@@ -23,7 +23,7 @@ class FlipBoard<T> extends StatefulWidget {
     required this.itemBuilder,
     required this.stream,
     required this.initValue,
-    this.curves = Curves.easeInOutSine,
+    this.curves = Curves.easeInOut,
     this.spacing = 0.5,
     this.duration = const Duration(milliseconds: 450),
     this.direction = FlipDirection.up,
