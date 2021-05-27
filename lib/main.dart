@@ -1,3 +1,4 @@
+import 'package:flip_clock/widget/flip_board.dart';
 import 'package:flip_clock/widget/flip_clock.dart';
 import 'package:flutter/material.dart';
 
@@ -13,20 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
-      home: Scaffold(
-        appBar: AppBar(title: Text('Flip Clock'),),
-        body: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              FlipClock(
-                startTime: DateTime.now(),
-                radius: 5,
-              ),
-            ],
-          ),
-        ),
-      ),
+      home: IntroductionPage(),
     );
   }
 }
@@ -39,11 +27,54 @@ class IntroductionPage extends StatefulWidget {
 }
 
 class _IntroductionPageState extends State<IntroductionPage> {
+  late bool _isShowSeconds;
+  late bool _isFlipUp;
 
+  @override
+  void initState() {
+    super.initState();
+    _isShowSeconds = true;
+    _isFlipUp = false;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Flip Clock'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            FlipClock(
+              startTime: DateTime.now(),
+              showSeconds: _isShowSeconds,
+              flipDirection: _isFlipUp ? FlipDirection.up : FlipDirection.down,
+            ),
+            SizedBox(height: 48),
+            SwitchListTile(
+              title: Text('Whether to show seconds：'),
+              value: _isShowSeconds,
+              onChanged: (value) {
+                setState(() {
+                  _isShowSeconds = value;
+                });
+              },
+            ),
+            SizedBox(height: 16),
+            SwitchListTile(
+              title: Text('Whether to flip up：'),
+              value: _isFlipUp,
+              onChanged: (value) {
+                setState(() {
+                  _isFlipUp = value;
+                });
+              },
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
-

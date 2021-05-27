@@ -11,8 +11,6 @@ class FlipClock extends StatelessWidget {
   final Color textColor;
   final Color? borderColor;
   final double? borderWidth;
-  final double horizontalSpacing;
-  final double verticalSpacing;
   final FontWeight fontWeight;
   final double? radius;
   final double textSize;
@@ -24,7 +22,7 @@ class FlipClock extends StatelessWidget {
   const FlipClock({
     Key? key,
     required this.startTime,
-    this.spacing = const EdgeInsets.all(8),
+    this.spacing = const EdgeInsets.all(4),
     this.spacingForNumText = const EdgeInsets.all(.25),
     this.flipDirection = FlipDirection.down,
     this.textSize = 16,
@@ -32,8 +30,6 @@ class FlipClock extends StatelessWidget {
     this.textColor = Colors.white,
     this.borderColor,
     this.borderWidth,
-    this.horizontalSpacing = 8,
-    this.verticalSpacing = 12,
     this.fontWeight = FontWeight.bold,
     this.radius,
     this.cubic = Curves.easeInOut,
