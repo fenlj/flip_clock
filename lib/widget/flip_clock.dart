@@ -15,6 +15,9 @@ class FlipClock extends StatelessWidget {
   final FontWeight fontWeight;
   final double? radius;
   final double textSize;
+  final Cubic cubic;
+  final Duration duration;
+  final Size size;
 
   const FlipClock({
     Key? key,
@@ -30,6 +33,9 @@ class FlipClock extends StatelessWidget {
     this.verticalSpacing = 12,
     this.fontWeight = FontWeight.bold,
     this.radius,
+    this.cubic = Curves.easeInOut,
+    this.duration = const Duration(milliseconds: 450),
+    this.size = const Size(48, 48),
   }) : super(key: key);
 
   @override
@@ -66,13 +72,24 @@ class FlipClock extends StatelessWidget {
       },
       stream: timeStream,
       initValue: initValue,
+      direction: flipDirection,
+      curves: cubic,
+      spacing: spacing,
+      duration: duration,
     );
   }
 
   Widget _buildText(int num) {
     return FlipClockNumItem(
       num: num,
-      radius: 2,
+      radius: radius,
+      textSize: textSize,
+      backgroundColor: backgroundColor,
+      textColor: textColor,
+      borderColor: borderColor,
+      borderWidth: borderWidth,
+      size:size,
+      fontWeight: fontWeight,
     );
   }
 }

@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
             children: [
               FlipClock(
                 startTime: DateTime.now(),
+                radius: 5,
               ),
             ],
           ),

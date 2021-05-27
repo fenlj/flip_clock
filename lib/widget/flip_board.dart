@@ -10,21 +10,21 @@ enum FlipDirection { up, down }
 typedef Widget StreamItemBuilder<T>(BuildContext context, T);
 
 class FlipBoard<T> extends StatefulWidget {
-  final double spacing;
+  final EdgeInsets spacing;
   final Duration duration;
   final FlipDirection direction;
   final StreamItemBuilder<T> itemBuilder;
   final Stream<T> stream;
   final T initValue;
   final Cubic curves;
-  
+
   const FlipBoard({
     Key? key,
     required this.itemBuilder,
     required this.stream,
     required this.initValue,
     this.curves = Curves.easeInOut,
-    this.spacing = 0.5,
+    this.spacing = const EdgeInsets.only(top: .5),
     this.duration = const Duration(milliseconds: 450),
     this.direction = FlipDirection.up,
   }) : super(key: key);
@@ -96,7 +96,7 @@ class _FlipBoardState<T> extends State<FlipBoard<T>>
     return Column(
       children: [
         _buildTopHalf(),
-        Padding(padding: EdgeInsets.only(top: widget.spacing)),
+        Padding(padding: widget.spacing),
         _buildBottomHalf(),
       ],
     );

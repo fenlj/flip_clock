@@ -7,8 +7,7 @@ class FlipClockNumItem extends StatelessWidget {
   final double? borderWidth;
   final Color? borderColor;
   final Color textColor;
-  final double horizontalSpacing;
-  final double verticalSpacing;
+  final Size size;
   final int num;
   final FontWeight fontWeight;
   final double? radius;
@@ -21,8 +20,7 @@ class FlipClockNumItem extends StatelessWidget {
     this.textColor = Colors.white,
     this.borderColor,
     this.borderWidth,
-    this.horizontalSpacing = 8,
-    this.verticalSpacing = 12,
+    this.size = const Size(48, 48),
     this.fontWeight = FontWeight.bold,
     this.radius,
   }) : super(key: key);
@@ -30,16 +28,8 @@ class FlipClockNumItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(
-        left: horizontalSpacing,
-        right: horizontalSpacing,
-        top: verticalSpacing,
-        bottom: verticalSpacing,
-      ),
-      constraints: BoxConstraints(
-        minWidth: 48,
-        minHeight: 48,
-      ),
+      width: size.width,
+      height: size.height,
       decoration: BoxDecoration(
           color: backgroundColor,
           border: borderColor != null
