@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-// 翻转方向
+// Flip direction
 enum FlipDirection { up, down }
 
-// 面向流的itemBuilder
+// Stream-oriented item Builder
 typedef Widget StreamItemBuilder<T>(BuildContext context, T);
 
 class FlipBoard<T> extends StatefulWidget {
@@ -64,15 +64,16 @@ class _FlipBoardState<T> extends State<FlipBoard<T>>
           _isFlipping = false;
         });
       });
-    // 做一个插值器处理
+
     CurvedAnimation curvedAnimation = CurvedAnimation(
       parent: _controller,
       curve: widget.curves,
     );
-    // 角度在0-pi/2 即在0-90度之间进行转变
+
+    // The angle is 0-pi2, that is, it changes between 0-90 degrees
     _animation =
         Tween(begin: 0.0001, end: math.pi / 2).animate(curvedAnimation);
-    // 订阅流
+
     _subscription = widget.stream.listen((value) {
       if (_currentValue == null) {
         _currentValue = value;
@@ -102,7 +103,7 @@ class _FlipBoardState<T> extends State<FlipBoard<T>>
     );
   }
 
-  /// 构建上半部分
+  /// Build the first half
   Widget _buildTopHalf() {
     return Stack(
       children: [
@@ -130,7 +131,7 @@ class _FlipBoardState<T> extends State<FlipBoard<T>>
     );
   }
 
-  /// 构造下半部分
+  /// Build the lower part
   Widget _buildBottomHalf() {
     return Stack(
       children: [
@@ -158,7 +159,7 @@ class _FlipBoardState<T> extends State<FlipBoard<T>>
     );
   }
 
-  /// 获取当前旋转的角度 方向、上下、动画是否翻转为判定条件
+  /// Get the current rotation angle
   double _getRotateX(bool isTop) {
     if (widget.direction == FlipDirection.up) {
       if (isTop) {
@@ -175,7 +176,7 @@ class _FlipBoardState<T> extends State<FlipBoard<T>>
     }
   }
 
-  /// 通过方向，上下部分，是否为翻转部分来获取当前item所需要的值
+  /// Get the value of the impression
   T _getBuilderValue(bool isTop, bool isFlipHalf) {
     if (widget.direction == FlipDirection.up) {
       if (isTop) {
