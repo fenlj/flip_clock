@@ -51,6 +51,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
               startTime: DateTime.now(),
               showSeconds: _isShowSeconds,
               flipDirection: _isFlipUp ? FlipDirection.up : FlipDirection.down,
+              radius: 4,
             ),
             SizedBox(height: 48),
             SwitchListTile(
