@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class FlipClock extends StatelessWidget {
   final DateTime startTime;
   final EdgeInsets spacing;
+  final EdgeInsets spacingForNumText;
   final FlipDirection flipDirection;
   final Color backgroundColor;
   final Color textColor;
@@ -18,11 +19,13 @@ class FlipClock extends StatelessWidget {
   final Cubic cubic;
   final Duration duration;
   final Size size;
+  final bool showSeconds;
 
   const FlipClock({
     Key? key,
     required this.startTime,
     this.spacing = const EdgeInsets.all(8),
+    this.spacingForNumText = const EdgeInsets.all(.25),
     this.flipDirection = FlipDirection.down,
     this.textSize = 16,
     this.backgroundColor = Colors.black,
@@ -36,6 +39,7 @@ class FlipClock extends StatelessWidget {
     this.cubic = Curves.easeInOut,
     this.duration = const Duration(milliseconds: 450),
     this.size = const Size(48, 48),
+    this.showSeconds = true,
   }) : super(key: key);
 
   @override
@@ -56,11 +60,13 @@ class FlipClock extends StatelessWidget {
           timeStream.map((DateTime time) => time.minute),
           startTime.minute,
         ),
-        Padding(padding: spacing),
-        _buildPart(
-          timeStream.map((DateTime time) => time.second),
-          startTime.second,
-        ),
+        showSeconds ? Padding(padding: spacing) : SizedBox(width: 0),
+        showSeconds
+            ? _buildPart(
+                timeStream.map((DateTime time) => time.second),
+                startTime.second,
+              )
+            : SizedBox(width: 0),
       ],
     );
   }
@@ -74,7 +80,7 @@ class FlipClock extends StatelessWidget {
       initValue: initValue,
       direction: flipDirection,
       curves: cubic,
-      spacing: spacing,
+      spacing: spacingForNumText,
       duration: duration,
     );
   }
@@ -88,7 +94,7 @@ class FlipClock extends StatelessWidget {
       textColor: textColor,
       borderColor: borderColor,
       borderWidth: borderWidth,
-      size:size,
+      size: size,
       fontWeight: fontWeight,
     );
   }
